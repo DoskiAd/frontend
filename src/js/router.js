@@ -2,10 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router, Route, Switch
 } from 'react-router-dom';
-
-const HomePage = () => {
-  return <div align="center"><h4 className="display-4">DoskiAd</h4></div>
-}
+import HomePage from './components/HomePage.js';
 
 const Routes = () => {
   return (

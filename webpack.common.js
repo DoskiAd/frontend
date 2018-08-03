@@ -20,6 +20,14 @@ module.exports = {
         ]
       },
       {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          "sass-loader"
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader"
@@ -31,6 +39,17 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'images/[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
