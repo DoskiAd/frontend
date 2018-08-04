@@ -3,7 +3,12 @@ import React from 'react';
 const DropdownCategoriesItem = (props) => {
   return(
     <li>
-      <a className="dropdown-item" href="#">{props.name}</a>
+      <a className="dropdown-item"
+        href="#"
+        onClick={(event) =>{
+          event.preventDefault();
+          props.callback();
+        }} >{props.name}</a>
     </li>
   );
 }
@@ -11,24 +16,33 @@ const DropdownCategoriesItem = (props) => {
 const CategoriesItem = (props) => {
   return(
     <li className="nav-item">
-      <a href="#" className="nav-link">{props.name}</a>
+      <a href="#"
+        className="nav-link"
+        onClick={(event) =>{
+          event.preventDefault();
+          props.callback();
+        }} >{props.name}</a>
     </li>
   )
 }
 
 const NavbarList = (props) => {
   let list = props.categoriesList.map((item) => {
-    return <DropdownCategoriesItem key={item.id} name={item.name} />
+    return <DropdownCategoriesItem key={item.id}
+      name={item.name}
+      callback={() => props.callback(item.id)} />
   });
   return(
     <ul className="navbar-nav mr-auto">
       {
         props.categoriesList.length > 0 &&
-        <CategoriesItem name={props.categoriesList[0].name} />
+        <CategoriesItem name={props.categoriesList[0].name}
+          callback={() => props.callback(props.categoriesList[0].id)} />
       }
       {
         props.categoriesList.length > 1 &&
-        <CategoriesItem name={props.categoriesList[1].name} />
+        <CategoriesItem name={props.categoriesList[1].name}
+          callback={() => props.callback(props.categoriesList[1].id)} />
       }
       {
         props.categoriesList.length > 1 &&

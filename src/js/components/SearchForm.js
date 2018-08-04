@@ -14,7 +14,7 @@ const SearchForm = (props) => {
 				    <input type="text" className="form-control" style={{"width":"50%"}} placeholder="Поиск" />
 				    <div className="input-group-append">
 				      <button className="btn btn-warning" type="submit">
-				        <i className="fa fa-search"></i> Search
+				        <i className="fa fa-search"></i> Найти
 				      </button>
 				    </div>
 			    </div>

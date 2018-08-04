@@ -4,17 +4,12 @@ import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducers/index.js';
 import Routes from './router.js';
-import {getCategories} from './apiRequests';
+import {fillCategories, fillItems} from './middleware/thunks.js';
 
 const appData = createStore(reducer, applyMiddleware(thunk));
 
-getCategories().then((res) => {
-  appData.dispatch({
-    type: "SET_CATEGORIES",
-    categories: res
-  })
-});
-
+appData.dispatch(fillCategories());
+appData.dispatch(fillItems());
 
 export default class App extends React.Component{
   render(){
