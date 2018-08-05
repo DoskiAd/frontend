@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {formImageUrl} from '../helpers.js';
 
 const Item = (props) => {
   return(
@@ -7,17 +9,22 @@ const Item = (props) => {
 
         <aside className="col-sm-3 py-0 my-0">
           <div className="img-wrap py-0 my-0">
-            <a href="#">
-              <img src="images/dummy.jpg" className="img-sm py-0 my-0" />
-            </a>
+            <Link to={"/item/" + props.id} >
+              <img src={
+                  !!props.photo? formImageUrl(props.id, 1): "images/dummy.png"
+                }
+                className="img-sm py-0 my-0" />
+            </Link>
           </div>
         </aside>
 
         <div className="col-sm-6 py-0 my-0">
           <div className="text-wrap">
 				    <h5 className="title">{props.title}</h5>
-				    {/*<p>{props.desc}</p>*/}
-            <p className="my-0"><a href="#">Страница товара</a></p>
+            <p className="my-0">
+              <Link to={"/item/" + props.id} >Страница товара</Link>
+            </p>
+
             <p className="my-0 text-muted">{props.date}</p>
             <p className="my-0 text-muted">{props.location}</p>
 			    </div>
@@ -42,10 +49,11 @@ const Item = (props) => {
 const ItemList = (props) => {
   let list = props.items.map((item) => {
     return <Item key={item.id}
+      id={item.id}
       title={item.title}
       price={item.price}
       desc={item.description}
-      numPhotos={item.photo}
+      photo={item.photos}
       date={item.date}
       location={item.location} />
   });

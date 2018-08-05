@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PaginationBtn from '../components/PaginationBtn.js';
-import {fillItems} from '../middleware/thunks.js';
+import {setItemsByPage} from '../middleware/thunks.js';
+import {setPaginationBlock} from '../actions/index.js';
 
 const maxBlock = (maxPages, pagesPerBlock) => {
   return Math.floor((maxPages - 1)/pagesPerBlock);
@@ -27,7 +28,6 @@ const PagesContainer = (props) => {
         disabled={i == props.curPage}
         callback={() => {
           props.setPage(i);
-          props.fillItems();
         }} />
     );
   }
@@ -53,13 +53,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fillItems: () => dispatch(fillItems()),
-    setPaginationBlock: (block) => dispatch({
-      type: "SET_PAGIN_BLOCK", block: block
-    }),
-    setPage: (page) => dispatch({
-      type: "SET_PAGE", page: page
-    })
+    setPaginationBlock: (block) => dispatch(setPaginationBlock(block)),
+    setPage: (page) => dispatch(setItemsByPage(page))
   };
 }
 

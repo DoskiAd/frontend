@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import FilterCheckbox from '../components/FilterCheckbox.js';
-import {fillItems} from '../middleware/thunks.js';
+import {setItemsByCategory} from '../middleware/thunks.js';
 
 const FiltersContainer = (props) => {
   return props.categories.map((category) => {
@@ -12,7 +12,6 @@ const FiltersContainer = (props) => {
         props.applyFilter(
           category.id === props.activeFilter? null: category.id
         );
-        props.fillItems();
       }} />
   });
 }
@@ -26,11 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    applyFilter: (id) => dispatch({
-      type: "SET_CATEGORY_FILTER",
-      categoryId: id
-    }),
-    fillItems: () => dispatch(fillItems())
+    applyFilter: (id) => dispatch(setItemsByCategory(id))
   };
 }
 

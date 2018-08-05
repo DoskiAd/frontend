@@ -1,34 +1,39 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
-const DropdownCategoriesItem = (props) => {
-  return(
-    <li>
-      <a className="dropdown-item"
-        href="#"
-        onClick={(event) =>{
-          event.preventDefault();
-          props.callback();
-        }} >{props.name}</a>
-    </li>
-  );
-}
+class CategoriesItem extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = { redirect: false }
+  }
 
-const CategoriesItem = (props) => {
-  return(
-    <li className="nav-item">
-      <a href="#"
-        className="nav-link"
-        onClick={(event) =>{
-          event.preventDefault();
-          props.callback();
-        }} >{props.name}</a>
-    </li>
-  )
+  enableRedirect(){
+    this.setState({redirect: true});
+  }
+
+  render(){
+    if(this.state.redirect){
+      return <Redirect to="/" />
+    }
+
+    return(
+      <li className={!!this.props.dropdown? "": "nav-item"}>
+        <a href="#"
+          className={!!this.props.dropdown? "dropdown-item": "nav-link"}
+          onClick={(event) =>{
+            event.preventDefault();
+            this.props.callback();
+            this.enableRedirect.bind(this)();
+          }} >{this.props.name}</a>
+      </li>
+    );
+  }
 }
 
 const NavbarList = (props) => {
   let list = props.categoriesList.map((item) => {
-    return <DropdownCategoriesItem key={item.id}
+    return <CategoriesItem key={item.id}
+      dropdown={true}
       name={item.name}
       callback={() => props.callback(item.id)} />
   });

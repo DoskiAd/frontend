@@ -1,4 +1,5 @@
-import {getCategories, getItems} from '../apiRequests';
+import {getCategories, getItems, getItemById} from '../apiRequests';
+import {getByKeyVal} from '../helpers.js';
 
 export const fillCategories = () => {
   return (dispatch) => {
@@ -11,10 +12,13 @@ export const fillCategories = () => {
   }
 }
 
-export const fillItems = () => {
+export const setItemsByPage = (page) => {
   return (dispatch, getState) => {
+    dispatch({
+      type: "SET_PAGE", page: page
+    });
     getItems(
-      getState().categoryFilter, getState().page
+      getState().categoryFilter, page
     ).then((res, text, req) => {
       dispatch({
         type: "SET_ITEMS",
@@ -22,8 +26,43 @@ export const fillItems = () => {
       });
       dispatch({
         type: "SET_NUM_OF_PAGES",
-        number: req.getResponseHeader("totalPage")
+        number: parseInt(req.getResponseHeader("totalPage")) > 0?
+            req.getResponseHeader("totalPage"): 1
       });
     });
+  }
+}
+
+export const setItemsByCategory = (category) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SET_CATEGORY_FILTER", categoryId: category
+    });
+    dispatch(setItemsByPage(1));
+  }
+}
+
+export const fillItems = () => {
+  return (dispatch) => {
+    dispatch(setItemsByCategory(null));
+  }
+}
+
+export const setCurrentItemById = (id) => {
+  return (dispatch, getState) => {
+    let item = getByKeyVal(getState().items, id, "id");
+    if(item !== null){
+      dispatch({
+        type: "SET_CURRENT_ITEM",
+        item: item
+      });
+    } else {
+      getItemById(id).then((res) => {
+        dispatch({
+          type: "SET_CURRENT_ITEM",
+          item: res
+        })
+      });
+    }
   }
 }

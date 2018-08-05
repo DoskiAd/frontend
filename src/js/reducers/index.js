@@ -6,6 +6,7 @@ import page from './page.js';
 import numOfPages from './numOfPages.js';
 import paginationBlock from './paginationBlock.js';
 import gridView from './gridView.js';
+import currentItem from './currentItem.js';
 
 export default combineReducers({
   categories,
@@ -14,5 +15,6 @@ export default combineReducers({
   page,
   numOfPages,
   paginationBlock,
-  gridView
+  gridView,
+  currentItem
 });

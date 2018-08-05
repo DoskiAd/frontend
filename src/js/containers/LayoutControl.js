@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import LayoutSwitch from '../components/LayoutSwitch.js';
+import {toggleGrid} from '../actions/index.js';
 
 const LayoutControl = (props) => {
   return (
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggle: () => dispatch({type: "TOGGLE_GRID"})
+    toggle: () => dispatch(toggleGrid())
   }
 }
 

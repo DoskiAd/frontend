@@ -20,3 +20,11 @@ export const getItems = (category, page) => {
     dataType: "json"
   });
 }
+
+export const getItemById = (id) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "items/" + id,
+    method: "GET",
+    dataType: "json"
+  })
+}

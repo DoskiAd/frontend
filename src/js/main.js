@@ -11,7 +11,7 @@ import '../plugins/fancybox/fancybox.min.css';
 import '../plugins/owlcarousel/assets/owl.carousel.min.css';
 import '../plugins/owlcarousel/assets/owl.theme.default.css';
 
-import '../images/dummy.jpg';
+import '../images/dummy.png';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
