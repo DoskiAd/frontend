@@ -28,3 +28,29 @@ export const getItemById = (id) => {
     dataType: "json"
   })
 }
+
+export const regiserUser = (name, email, password, confirm) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "register",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      "name": name,
+      "email": email,
+      "password": password,
+      "confirmPassword": confirm
+    })
+  });
+}
+
+export const logUserIn = (email, password) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "login",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      "email": email,
+      "password": password
+    })
+  });
+}

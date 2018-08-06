@@ -1,4 +1,11 @@
-import {getCategories, getItems, getItemById} from '../apiRequests';
+import {
+  getCategories,
+  getItems,
+  getItemById,
+  regiserUser,
+  logUserIn
+} from '../apiRequests';
+import {login, logout} from '../actions/index.js';
 import {getByKeyVal} from '../helpers.js';
 
 export const fillCategories = () => {
@@ -64,5 +71,42 @@ export const setCurrentItemById = (id) => {
         })
       });
     }
+  }
+}
+
+export const registration = (name, email, password, confirm) => {
+  return (dispatch) => {
+    dispatch({type: "SET_REG_IN_PROGRESS"});
+    regiserUser(name, email, password, confirm).then(
+      (resp) => {
+        dispatch({type: "SET_REG_DONE"});
+        dispatch({
+          type: "ADD_LOGIN_INFO",
+          msg: "Создана учётная запись. Теперь вы можете войти"
+        });
+      },
+      (resp) => {
+        console.log(JSON.stringify(resp));
+        dispatch({type: "SET_REG_FAIL", error: resp.responseText});
+      }
+    );
+  }
+}
+
+export const authentication = (email, password) => {
+  return (dispatch) => {
+    dispatch({type: "AUTH_IN_PROGRESS"});
+    logUserIn(email, password).then(
+      (resp) => {
+        dispatch(login(resp.email, resp.name, resp.value));
+      },
+      (resp, msg) => {
+        dispatch(logout());
+        dispatch({
+          type: "ADD_LOGIN_ERR",
+          msg: resp.responseText
+        });
+      }
+    );
   }
 }

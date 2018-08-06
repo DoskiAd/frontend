@@ -1,8 +1,8 @@
 import React from 'react';
 import NavbarCategories from '../containers/NavbarCategories.js';
 import SearchForm from './SearchForm.js';
-import SignIn from './SignIn.js';
-import MakeAnAd from './MakeAnAd.js';
+import UserBtnContainer from '../containers/UserBtnContainer.js';
+import ProtectedRedirectBtnContainer from '../containers/ProtectedRedirectBtnContainer.js';
 import Favorites from './Favorites.js';
 
 const Header = (props) => {
@@ -24,16 +24,19 @@ const Header = (props) => {
       <section className="header-main shadow-sm">
          <div className="container">
            <div className="row-sm align-items-center">
-              <div className="col-lg-15-24 col-sm-8">
+              <div className="col-lg-12-24">
                 <SearchForm categoriesList={[{"id":2,"name":"Ноутбуки"},{"id":1,"name":"Растения"}]} />
               </div>
-              <div className="col-lg-9-24 col-sm-12">
+              <div className="col-lg-12-24">
 		             <div className="widgets-wrap float-right row no-gutters py-1">
                    <div className="col-auto">
-                     <SignIn />
+                     <UserBtnContainer />
                    </div>
                    <div className="col-auto">
-                     <MakeAnAd />
+                      <ProtectedRedirectBtnContainer icon="fa-table"
+                        redirect="/newad">
+                        Создать<br />объявление
+                      </ProtectedRedirectBtnContainer>
                    </div>
                    <div className="col-auto">
                      <Favorites />

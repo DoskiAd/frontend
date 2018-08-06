@@ -7,6 +7,9 @@ import numOfPages from './numOfPages.js';
 import paginationBlock from './paginationBlock.js';
 import gridView from './gridView.js';
 import currentItem from './currentItem.js';
+import auth from './auth.js';
+import register from './register.js';
+import loginMsgs from './loginMsgs.js';
 
 export default combineReducers({
   categories,
@@ -16,5 +19,8 @@ export default combineReducers({
   numOfPages,
   paginationBlock,
   gridView,
-  currentItem
+  currentItem,
+  auth,
+  register,
+  loginMsgs
 });
