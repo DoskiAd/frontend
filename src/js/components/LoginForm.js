@@ -31,7 +31,7 @@ class LoginForm extends React.Component{
         <div className="form-group">
           <label>Адрес электронной почты:</label>
             <input className="form-control"
-              placeholder="Email"
+              value={this.state.emailInput}
               type="email"
               onChange={(event) =>
                 this.trackInput.bind(this)(event, "emailInput")} />
@@ -43,6 +43,7 @@ class LoginForm extends React.Component{
           }
           <label>Пароль:</label>
             <input className="form-control"
+              value={this.state.passwordInput}
               type="password"
               onChange={(event) =>
                 this.trackInput.bind(this)(event, "passwordInput")} />

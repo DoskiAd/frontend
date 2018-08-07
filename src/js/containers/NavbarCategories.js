@@ -4,7 +4,8 @@ import NavbarList from '../components/NavbarList.js';
 import {setItemsByCategory} from '../middleware/thunks.js';
 
 const NavbarCategories = (props) => {
-  return <NavbarList categoriesList={props.categoriesList}
+  return <NavbarList home={props.home}
+    categoriesList={props.categoriesList}
     callback={(id) => {
       props.applyFilter(id);
     }} />

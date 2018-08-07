@@ -3,7 +3,9 @@ import {
   getItems,
   getItemById,
   regiserUser,
-  logUserIn
+  logUserIn,
+  sendAdData,
+  sendAdPhotos
 } from '../apiRequests';
 import {login, logout} from '../actions/index.js';
 import {getByKeyVal} from '../helpers.js';
@@ -108,5 +110,20 @@ export const authentication = (email, password) => {
         });
       }
     );
+  }
+}
+
+export const postAd = (title, price, desc, loc, cat, phone, email, photos) => {
+  return (dispatch, getState) => {
+    sendAdData(
+      getState().auth.token, title, price, desc, loc, cat, phone, email, photos
+    ).then((resp) => {
+        if(photos.length > 0){
+          sendAdPhotos(getState().auth.token, photos, resp).fail(
+            (resp) => console.log(JSON.stringify(resp))
+          );
+        }
+        dispatch(fillItems());
+      }, (resp) => console.log(JSON.stringify(resp)));
   }
 }

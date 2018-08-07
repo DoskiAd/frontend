@@ -9,7 +9,7 @@ const HomePage = (props) => {
   return(
     <div>
 
-    <Header {...props} />
+    <Header home={true} />
 
     <section className="section-content bg padding-y-sm">
       <div className="container">

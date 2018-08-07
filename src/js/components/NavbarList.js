@@ -12,12 +12,12 @@ class CategoriesItem extends React.Component{
   }
 
   render(){
-    if(this.state.redirect){
-      return <Redirect to="/" />
-    }
-
     return(
       <li className={!!this.props.dropdown? "": "nav-item"}>
+        {
+          this.state.redirect && !this.props.home &&
+          <Redirect to="/" />
+        }
         <a href="#"
           className={!!this.props.dropdown? "dropdown-item": "nav-link"}
           onClick={(event) =>{
@@ -32,7 +32,7 @@ class CategoriesItem extends React.Component{
 
 const NavbarList = (props) => {
   let list = props.categoriesList.map((item) => {
-    return <CategoriesItem key={item.id}
+    return <CategoriesItem home={props.home} key={item.id}
       dropdown={true}
       name={item.name}
       callback={() => props.callback(item.id)} />
@@ -41,12 +41,12 @@ const NavbarList = (props) => {
     <ul className="navbar-nav mr-auto">
       {
         props.categoriesList.length > 0 &&
-        <CategoriesItem name={props.categoriesList[0].name}
+        <CategoriesItem home={props.home} name={props.categoriesList[0].name}
           callback={() => props.callback(props.categoriesList[0].id)} />
       }
       {
         props.categoriesList.length > 1 &&
-        <CategoriesItem name={props.categoriesList[1].name}
+        <CategoriesItem home={props.home} name={props.categoriesList[1].name}
           callback={() => props.callback(props.categoriesList[1].id)} />
       }
       {

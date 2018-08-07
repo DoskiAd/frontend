@@ -54,3 +54,52 @@ export const logUserIn = (email, password) => {
     })
   });
 }
+
+export const sendAdData = (
+  token, title, price, desc, loc, cat, phone, email
+) => {
+  let contacts = [];
+  if(!!phone){
+    contacts.push({
+      "type": "mobile",
+      "value": phone
+    });
+  }
+  if(!!email){
+    contacts.push({
+      "type": "email",
+      "value": email
+    });
+  }
+
+  return $.ajax({
+    url: publicConf.apiUrl + "additem?token=" + token,
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      "category": cat,
+      "title": title,
+      "price": price,
+      "description": desc,
+      "location": loc,
+      "contacts": contacts
+    })
+  });
+};
+
+export const sendAdPhotos = (token, photos, id) => {
+  let files = new FormData();
+  $.each(photos, (i, photo) => {
+    if(photo.size < 512000){
+      files.append("files", photo);
+    }
+  });
+
+  return $.ajax({
+    url: publicConf.apiUrl + "addphoto/" + id + "?token=" + token,
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: files
+  })
+};

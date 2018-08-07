@@ -16,7 +16,7 @@ const Header = (props) => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarTop">
-            <NavbarCategories />
+            <NavbarCategories home={props.home} />
           </div>
         </div>
       </nav>

@@ -35,6 +35,7 @@ class SignupForm extends React.Component{
           <label>Имя:</label>
           <input type="text"
             className="form-control"
+            value={this.state.nameInput}
             placeholder=""
             onChange={(event) =>
               this.trackInput.bind(this)(event, "nameInput")} />
@@ -44,6 +45,7 @@ class SignupForm extends React.Component{
           <label>Адрес электронной почты:</label>
           <input type="email"
             className="form-control"
+            value={this.state.emailInput}
             placeholder="example@email.com"
             onChange={(event) =>
               this.trackInput.bind(this)(event, "emailInput")} />
@@ -53,6 +55,7 @@ class SignupForm extends React.Component{
           <label>Пароль:</label>
             <input className="form-control"
               type="password"
+              value={this.state.passwordInput}
               onChange={(event) =>
                 this.trackInput.bind(this)(event, "passwordInput")} />
         </div>
@@ -61,6 +64,7 @@ class SignupForm extends React.Component{
           <label>Подтвердите пароль:</label>
             <input className="form-control"
               type="password"
+              value={this.state.confirmInput}
               onChange={(event) =>
                 this.trackInput.bind(this)(event, "confirmInput")} />
         </div>
