@@ -5,6 +5,7 @@ const defaultState = {
 }
 
 const register = (state=defaultState, action) => {
+
   if(action.type === "SET_REG_DONE"){
     return {...defaultState, isDone: true};
   }

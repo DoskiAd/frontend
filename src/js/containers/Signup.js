@@ -13,12 +13,12 @@ class Signup extends React.Component{
   }
 
   render(){
-
-    if(this.props.regStatus.isDone){
-      return <Redirect to="/login" />
-    }
     return(
       <div>
+        {
+          this.props.regStatus.isDone &&
+          <Redirect to="/confirmacc" />
+        }
         {
           !!this.props.regStatus.error &&
           <Alert type="error"

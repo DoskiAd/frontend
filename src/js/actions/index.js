@@ -26,3 +26,11 @@ export const clearRegStatus = () => {
 export const clearLoginMsgs = () => {
   return {type: "CLEAR_LOGIN_MSGS"};
 }
+
+export const clearPassChangeStatus = () => {
+  return {type: "CLEAR_PASSCHANGE_STATUS"};
+}
+
+export const clearConfirmaccMsgs = () => {
+  return {type: "CLEAR_CONFIRMACC_MSGS"};
+}

@@ -29,6 +29,10 @@ class LoginForm extends React.Component{
       <form className={!!this.props.mini? "px-4 py-3": ""} onSubmit={(event) =>
          this.acceptInput.bind(this)(event)} >
         <div className="form-group">
+          {
+            !this.props.mini &&
+            <a className="float-right" href="#/confirmacc">Подтвердить аккаунт</a>
+          }
           <label>Адрес электронной почты:</label>
             <input className="form-control"
               value={this.state.emailInput}

@@ -1,8 +1,8 @@
 import React from 'react';
 import HeaderSimple from './HeaderSimple';
-import PassChange from '../containers/PassChange.js';
+import AccConfirm from '../containers/AccConfirm.js';
 
-class RestorePassPage extends React.Component{
+class AccConfirmPage extends React.Component{
   componentDidMount(){
     window.scrollTo(0,0);
   }
@@ -18,13 +18,13 @@ class RestorePassPage extends React.Component{
 
               <div className="card">
                 <header className="card-header">
-                  <a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Войти</a>
-                	<h4 className="card-title mt-2">Восстановление пароля</h4>
+                  <a href="#/signup" className="float-right btn btn-outline-primary mt-1">Регистрация</a>
+                  <h4 className="card-title mt-2">Подтверждение аккаунта</h4>
                 </header>
                 <article className="card-body">
-                  <PassChange />
+                  <AccConfirm />
                 </article>
-              </div>
+                </div>
 
             </div>
           </div>
@@ -34,4 +34,4 @@ class RestorePassPage extends React.Component{
   }
 }
 
-export default RestorePassPage;
+export default AccConfirmPage;

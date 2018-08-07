@@ -27,6 +27,7 @@ const UserBtn = (props) => {
               <Login mini="true" />
               <hr className="dropdown-divider" />
               <a className="dropdown-item" href="#/signup">Зарегистрироваться</a>
+              <a className="dropdown-item" href="#/confirmacc">Подтвердить аккаунт</a>
               <a className="dropdown-item" href="#/restorepass">Забыли пароль?</a>
             </div>
           }

@@ -5,7 +5,10 @@ import {
   regiserUser,
   logUserIn,
   sendAdData,
-  sendAdPhotos
+  sendAdPhotos,
+  reqPassChangeKey,
+  sendNewPassword,
+  reqAccountConfirm
 } from '../apiRequests';
 import {login, logout} from '../actions/index.js';
 import {getByKeyVal} from '../helpers.js';
@@ -82,10 +85,6 @@ export const registration = (name, email, password, confirm) => {
     regiserUser(name, email, password, confirm).then(
       (resp) => {
         dispatch({type: "SET_REG_DONE"});
-        dispatch({
-          type: "ADD_LOGIN_INFO",
-          msg: "Создана учётная запись. Теперь вы можете войти"
-        });
       },
       (resp) => {
         console.log(JSON.stringify(resp));
@@ -125,5 +124,59 @@ export const postAd = (title, price, desc, loc, cat, phone, email, photos) => {
         }
         dispatch(fillItems());
       }, (resp) => console.log(JSON.stringify(resp)));
+  }
+}
+
+export const passChangeAskKey = (email) => {
+  return (dispatch) => {
+    reqPassChangeKey(email).then((resp) => {
+        dispatch({
+          type: "PASSCHANGE_KEY_IS_SENT"
+        });
+        dispatch({type: "SET_PASSCHANGE_ERR_MSG", msg: null})
+      },
+      (resp) => dispatch({
+        type: "SET_PASSCHANGE_ERR_MSG",
+        msg: resp.responseText
+      }));
+  }
+}
+
+export const changePassword = (key, password, confirm) => {
+  return (dispatch) => {
+    sendNewPassword(key, password, confirm).then((resp) => {
+        dispatch({
+          type: "SET_PASSCHANGE_SUCCESS_MSG",
+          msg: "Пароль успешно изменён. Войдите с новым паролем"
+        });
+        dispatch({type: "SET_PASSCHANGE_ERR_MSG", msg: null})
+      },
+      (resp) => dispatch({
+        type: "SET_PASSCHANGE_ERR_MSG",
+        msg: resp.responseText
+      }));
+  }
+}
+
+export const sendConfirmCode = (code) => {
+  return (dispatch) => {
+    reqAccountConfirm(code).then(
+      (resp) => {
+        dispatch({
+          type: "SET_CONFIRMACC_SUCCESS_MSG", msg: "Аккаунт успешно подтверждён"
+        });
+        dispatch({
+          type: "SET_CONFIRMACC_ERR_MSG", msg: null
+        });
+      },
+      (resp) => {
+        dispatch({
+          type: "SET_CONFIRMACC_SUCCESS_MSG", msg: null
+        });
+        dispatch({
+          type: "SET_CONFIRMACC_ERR_MSG", msg: resp.responseText
+        });
+      }
+    );
   }
 }

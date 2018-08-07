@@ -103,3 +103,29 @@ export const sendAdPhotos = (token, photos, id) => {
     data: files
   })
 };
+
+export const reqPassChangeKey = (email) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "forgot?email=" + email,
+    method: "POST",
+  });
+}
+
+export const sendNewPassword = (key, password, confirm) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "reset?token=" + key,
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      "password": password,
+      "confirmPassword": confirm
+    })
+  });
+}
+
+export const reqAccountConfirm = (code) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "confirm?token=" + code,
+    method: "GET"
+  })
+}
