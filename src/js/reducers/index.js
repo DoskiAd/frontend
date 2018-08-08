@@ -14,6 +14,7 @@ import passReset from './passReset.js';
 import confirmAcc from './confirmAcc.js';
 import favoriteIds from './favoriteIds.js';
 import searchOptions from './searchOptions';
+import numOfResults from './numOfResults.js';
 
 export default combineReducers({
   categories,
@@ -30,5 +31,6 @@ export default combineReducers({
   passReset,
   confirmAcc,
   favoriteIds,
-  searchOptions
+  searchOptions,
+  numOfResults
 });

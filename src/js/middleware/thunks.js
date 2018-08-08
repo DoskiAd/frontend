@@ -46,6 +46,10 @@ export const setItemsByPage = (page) => {
         number: parseInt(req.getResponseHeader("totalPage")) > 0?
             req.getResponseHeader("totalPage"): 1
       });
+      dispatch({
+        type: "SET_NUM_OF_RESULTS",
+        number: parseInt(req.getResponseHeader("totalFound"))
+      });
     },
     (res) => console.log(res.responseText));
   }

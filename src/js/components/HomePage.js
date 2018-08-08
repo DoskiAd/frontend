@@ -6,6 +6,7 @@ import PagesContainer from '../containers/PagesContainer.js';
 import LayoutControl from '../containers/LayoutControl.js';
 import Loader from '../containers/Loader.js';
 import PrivatePageProtect from '../containers/PrivatePageProtect.js';
+import ResultsCounter from '../containers/ResultsCounter.js';
 
 const HomePage = (props) => {
   return(
@@ -73,6 +74,8 @@ const HomePage = (props) => {
             </div>
           </div>
         </div>
+
+        <ResultsCounter />
 
         <ItemsContainer />
 
