@@ -19,8 +19,8 @@ class AccConfirm extends React.Component{
           <Redirect to="/" />
         }
 
-        <Alert type="info" message={"Перед использованием аккаунта нужно его подтвердить." +
-           "Код подтверждения высылается на почту, указанную при регистрации"} />
+        <Alert type="info" message={"Перед использованием аккаунта нужно его подтвердить. " +
+           "Код подтверждения высылается на почту, указанную при регистрации."} />
         {
           !!this.props.confirmStatus.errorMsg &&
           <Alert type="error" message={this.props.confirmStatus.errorMsg} />

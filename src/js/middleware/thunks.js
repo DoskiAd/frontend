@@ -98,7 +98,7 @@ export const registration = (name, email, password, confirm) => {
       },
       (resp) => {
         console.log(JSON.stringify(resp));
-        dispatch({type: "SET_REG_FAIL", error: resp.responseText});
+        dispatch({type: "SET_REG_FAIL", error: "Ошибка регистрации: " + resp.responseText});
       }
     );
   }
@@ -119,7 +119,7 @@ export const authentication = (email, password) => {
         dispatch(logout());
         dispatch({
           type: "ADD_LOGIN_ERR",
-          msg: resp.responseText
+          msg: "Ошибка входа: " + resp.responseText
         });
       }
     );

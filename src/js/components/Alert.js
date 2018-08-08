@@ -1,5 +1,7 @@
 import React from 'react';
 
+const maxMessageLength = 200
+
 const Alert = (props) => {
   let alertType;
   if(props.type === "error"){
@@ -12,7 +14,9 @@ const Alert = (props) => {
     <div className={"alert " + alertType}
       role="alert"
       align="center">
-      {props.message}
+      {props.message.length < maxMessageLength
+        ? props.message
+        : props.message.slice(0, maxMessageLength - 1)}
     </div>
   );
 }
