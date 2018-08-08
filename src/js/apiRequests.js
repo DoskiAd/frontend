@@ -10,14 +10,33 @@ export const getCategories = () => {
   });
 }
 
-export const getItems = (category, page, token=null) => {
+export const getFavoriteItems = (token, page) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "likes" +
+     "?token=" + token + (!!page? "&page=" + page: ""),
+    method: "POST",
+    dataType: "json"
+  });
+}
+
+export const getSearchItems = (searchOptions, page) => {
+  let reqUrl = publicConf.apiUrl +
+    (!!searchOptions.category? "category/" + searchOptions.category: "items") +
+    "?title=" + searchOptions.title + "&p=" + searchOptions.sortBy +
+    "&d=" + searchOptions.order + "&page=" + (!!page? page: 1);
+  return $.ajax({
+    url: reqUrl,
+    method: "GET",
+    dataType: "json"
+  });
+}
+
+export const getItems = (category, page, token=null, searchOptions=null) => {
   if(category === "favorites"){
-    return $.ajax({
-      url: publicConf.apiUrl + "likes" +
-       "?token=" + token + (!!page? "&page=" + page: ""),
-      method: "POST",
-      dataType: "json"
-    });
+    return getFavoriteItems(token, page);
+  }
+  if(category === "search"){
+    return getSearchItems(searchOptions, page);
   }
   let reqUrl = publicConf.apiUrl +
     (!!category? "category/" + category: "items") +

@@ -18,7 +18,7 @@ class AccConfirmPage extends React.Component{
 
               <div className="card">
                 <header className="card-header">
-                  <a href="#/signup" className="float-right btn btn-outline-primary mt-1">Регистрация</a>
+                  <a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</a>
                   <h4 className="card-title mt-2">Подтверждение аккаунта</h4>
                 </header>
                 <article className="card-body">

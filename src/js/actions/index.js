@@ -34,3 +34,19 @@ export const clearPassChangeStatus = () => {
 export const clearConfirmaccMsgs = () => {
   return {type: "CLEAR_CONFIRMACC_MSGS"};
 }
+
+export const clearFavIds = () => {
+  return {type: "CLEAR_FAV_IDS"};
+}
+
+export const setSearchOptions = (category, key, sortBy, order) => {
+  return {
+    type: "SET_SEARCH_OPT",
+    options: {
+      category: category,
+      title: key,
+      sortBy: sortBy,
+      order: order
+    }
+  };
+}

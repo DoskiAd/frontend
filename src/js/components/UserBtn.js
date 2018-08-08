@@ -42,6 +42,7 @@ const UserBtn = (props) => {
                 <button className="btn btn-primary" onClick={(event) => {
                     event.preventDefault();
                     props.logout();
+                    props.clearFavorites();
                   }} > Выход </button>
               </div>
             </div>

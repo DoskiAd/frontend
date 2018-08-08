@@ -32,7 +32,10 @@ export const setItemsByPage = (page) => {
       type: "SET_PAGE", page: page
     });
     getItems(
-      getState().categoryFilter, page, getState().auth.token
+      getState().categoryFilter,
+      page,
+      getState().auth.token,
+      getState().searchOptions
     ).then((res, text, req) => {
       dispatch({
         type: "SET_ITEMS",
@@ -123,14 +126,28 @@ export const postAd = (title, price, desc, loc, cat, phone, email, photos) => {
   return (dispatch, getState) => {
     sendAdData(
       getState().auth.token, title, price, desc, loc, cat, phone, email, photos
-    ).then((resp) => {
+    ).then(
+      (resp) => {
+        dispatch({
+          type: "ADD_LOGIN_INFO",
+          msg: "Объявление успешно размещено"
+        });
+        dispatch({type: "ADD_LOGIN_ERR", msg: null});
         if(photos.length > 0){
           sendAdPhotos(getState().auth.token, photos, resp).fail(
-            (resp) => console.log(JSON.stringify(resp))
+            (resp) => dispatch({
+              type: "ADD_LOGIN_ERR",
+              msg: resp.responseText
+            })
           );
         }
-        dispatch(fillItems());
-      }, (resp) => console.log(JSON.stringify(resp)));
+        // dispatch(fillItems());
+      },
+      (resp) => {
+        dispatch({ type: "ADD_LOGIN_ERR", msg: resp.responseText });
+        dispatch({type: "ADD_LOGIN_INFO", msg: null});
+      }
+    );
   }
 }
 

@@ -18,7 +18,7 @@ class SignupPage extends React.Component{
 
               <div className="card">
                 <header className="card-header">
-                	<a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Войти</a>
+                	<a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</a>
                 	<h4 className="card-title mt-2">Регистрация</h4>
                 </header>
                 <article className="card-body">

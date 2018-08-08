@@ -17,7 +17,9 @@ class Loader extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    searchOptions: state.searchOptions
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {

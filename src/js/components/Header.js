@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarCategories from '../containers/NavbarCategories.js';
-import SearchForm from './SearchForm.js';
+// import SearchForm from './SearchForm.js';
+import Search from '../containers/Search.js';
 import UserBtnContainer from '../containers/UserBtnContainer.js';
 import ProtectedRedirectBtnContainer from '../containers/ProtectedRedirectBtnContainer.js';
 import FavCounter from '../containers/FavCounter.js';
@@ -25,10 +26,16 @@ const Header = (props) => {
          <div className="container">
            <div className="row-sm align-items-center">
               <div className="col-lg-12-24">
-                <SearchForm categoriesList={[{"id":2,"name":"Ноутбуки"},{"id":1,"name":"Растения"}]} />
+                <Search />
               </div>
               <div className="col-lg-12-24">
 		             <div className="widgets-wrap float-right row no-gutters py-1">
+                   {
+                     !!props.favorites &&
+                     <div className="col-auto">
+                       <h3 className="mx-2 my-0" >Избранное</h3>
+                     </div>
+                   }
                    <div className="col-auto">
                      <UserBtnContainer />
                    </div>

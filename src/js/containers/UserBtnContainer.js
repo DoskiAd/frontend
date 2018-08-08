@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {logout} from '../actions/index.js';
+import {logout, clearFavIds} from '../actions/index.js';
 import UserBtn from '../components/UserBtn.js';
 
 const UserBtnContainer = (props) => {
@@ -18,7 +18,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {logout: () => dispatch(logout())};
+  return {
+    logout: () => dispatch(logout()),
+    clearFavorites: () => dispatch(clearFavIds())
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserBtnContainer);

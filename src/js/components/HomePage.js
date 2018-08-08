@@ -5,6 +5,7 @@ import FiltersContainer from '../containers/FiltersContainer.js';
 import PagesContainer from '../containers/PagesContainer.js';
 import LayoutControl from '../containers/LayoutControl.js';
 import Loader from '../containers/Loader.js';
+import PrivatePageProtect from '../containers/PrivatePageProtect.js';
 
 const HomePage = (props) => {
   return(
@@ -12,7 +13,10 @@ const HomePage = (props) => {
 
       {
         !!props.favorites &&
-        <Loader category="favorites" />
+        <div>
+          <Loader category="favorites" />
+          <PrivatePageProtect />
+        </div>
       }
       {
         !!props.home &&
@@ -21,6 +25,10 @@ const HomePage = (props) => {
       {
         !!props.category &&
         <Loader category={props.match.params.categoryId} />
+      }
+      {
+        !!props.search &&
+        <Loader category="search" />
       }
 
     <Header {...props} />

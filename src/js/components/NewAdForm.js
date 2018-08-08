@@ -81,7 +81,7 @@ class NewAdForm extends React.Component{
             <select className="custom-select"
               onChange={(event) =>
               this.trackInput.bind(this)(event, "categoryInput")}
-              value={this.state.value} >
+              value={this.state.categoryInput} >
               {optionList}
             </select>
           </div>
