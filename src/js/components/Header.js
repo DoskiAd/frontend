@@ -1,17 +1,17 @@
 import React from 'react';
 import NavbarCategories from '../containers/NavbarCategories.js';
-// import SearchForm from './SearchForm.js';
 import Search from '../containers/Search.js';
 import UserBtnContainer from '../containers/UserBtnContainer.js';
 import ProtectedRedirectBtnContainer from '../containers/ProtectedRedirectBtnContainer.js';
 import FavCounter from '../containers/FavCounter.js';
+import {Link} from 'react-router-dom';
 
 const Header = (props) => {
   return(
     <header className="section-header">
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
-        	<a className="navbar-brand" href="#"><h1 className="my-0 text-warning">DoskiAd</h1></a>
+        	<Link className="navbar-brand" to="/"><h1 className="my-0 text-warning">DoskiAd</h1></Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

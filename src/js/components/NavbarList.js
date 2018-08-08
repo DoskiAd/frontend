@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const CategoriesItem =(props) => {
   return(
     <li className={!!props.dropdown? "": "nav-item"}>
-      <a href={"#/categorypage/" + props.id}
-        className={!!props.dropdown? "dropdown-item": "nav-link"}>{props.name}</a>
+      <Link to={"/categorypage/" + props.id}
+        className={!!props.dropdown? "dropdown-item": "nav-link"}>{props.name}</Link>
     </li>
   );
 }

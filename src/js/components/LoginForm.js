@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class LoginForm extends React.Component{
   constructor(props){
@@ -31,7 +32,7 @@ class LoginForm extends React.Component{
         <div className="form-group">
           {
             !this.props.mini &&
-            <a className="float-right" href="#/confirmacc">Подтвердить аккаунт</a>
+            <Link className="float-right" to="/confirmacc">Подтвердить аккаунт</Link>
           }
           <label>Адрес электронной почты:</label>
             <input className="form-control"
@@ -43,7 +44,7 @@ class LoginForm extends React.Component{
         <div className="form-group">
           {
             !this.props.mini &&
-            <a className="float-right" href="#/restorepass">Забыли пароль?</a>
+            <Link className="float-right" to="/restorepass">Забыли пароль?</Link>
           }
           <label>Пароль:</label>
             <input className="form-control"

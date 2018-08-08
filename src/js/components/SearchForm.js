@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class SearchForm extends React.Component{
   constructor(props){
@@ -40,7 +41,7 @@ class SearchForm extends React.Component{
             value={this.state.textInput}
             onChange={(event) => this.trackInput.bind(this)(event, "textInput")} />
 			    <div className="input-group-append">
-			      <a href="#/search"
+			      <Link to="/search"
               className="btn btn-warning"
               onClick={ () => this.props.setSearchOptions(
                   this.state.categoryInput == "default"? null: this.state.categoryInput,
@@ -50,7 +51,7 @@ class SearchForm extends React.Component{
                 )
               } >
 			        <i className="fa fa-search"></i> Найти
-			      </a>
+			      </Link>
 			    </div>
 
           <div className="row justify-content-center mt-1">

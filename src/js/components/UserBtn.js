@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from '../containers/Login.js';
+import {Link} from 'react-router-dom';
 
 const UserBtn = (props) => {
   return (
@@ -26,9 +27,9 @@ const UserBtn = (props) => {
             <div>
               <Login mini="true" />
               <hr className="dropdown-divider" />
-              <a className="dropdown-item" href="#/signup">Зарегистрироваться</a>
-              <a className="dropdown-item" href="#/confirmacc">Подтвердить аккаунт</a>
-              <a className="dropdown-item" href="#/restorepass">Забыли пароль?</a>
+              <Link className="dropdown-item" to="/signup">Зарегистрироваться</Link>
+              <Link className="dropdown-item" to="/confirmacc">Подтвердить аккаунт</Link>
+              <Link className="dropdown-item" to="/restorepass">Забыли пароль?</Link>
             </div>
           }
           {

@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderSimple from './HeaderSimple';
 import AccConfirm from '../containers/AccConfirm.js';
+import {Link} from 'react-router-dom';
 
 class AccConfirmPage extends React.Component{
   componentDidMount(){
@@ -18,7 +19,7 @@ class AccConfirmPage extends React.Component{
 
               <div className="card">
                 <header className="card-header">
-                  <a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</a>
+                  <Link to="/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</Link>
                   <h4 className="card-title mt-2">Подтверждение аккаунта</h4>
                 </header>
                 <article className="card-body">

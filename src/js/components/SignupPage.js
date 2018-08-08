@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderSimple from './HeaderSimple';
 import Signup from '../containers/Signup.js';
+import {Link} from 'react-router-dom';
 
 class SignupPage extends React.Component{
   componentDidMount(){
@@ -18,7 +19,7 @@ class SignupPage extends React.Component{
 
               <div className="card">
                 <header className="card-header">
-                	<a href="#/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</a>
+                	<Link to="/userlogin" className="float-right btn btn-outline-primary mt-1">Вход</Link>
                 	<h4 className="card-title mt-2">Регистрация</h4>
                 </header>
                 <article className="card-body">
