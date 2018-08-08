@@ -30,12 +30,6 @@ const Header = (props) => {
               </div>
               <div className="col-lg-12-24">
 		             <div className="widgets-wrap float-right row no-gutters py-1">
-                   {
-                     !!props.favorites &&
-                     <div className="col-auto">
-                       <h3 className="mx-2 my-0" >Избранное</h3>
-                     </div>
-                   }
                    <div className="col-auto">
                      <UserBtnContainer />
                    </div>
@@ -45,16 +39,13 @@ const Header = (props) => {
                         Создать<br />объявление
                       </ProtectedRedirectBtnContainer>
                    </div>
-                   {
-                     !props.favorites &&
-                     <div className="col-auto">
-                       <ProtectedRedirectBtnContainer icon="fa-heart"
-                         redirect="/favorites">
-                         <FavCounter />
-               					 <div>Избранное</div>
-                       </ProtectedRedirectBtnContainer>
-                     </div>
-                   }
+                   <div className="col-auto">
+                     <ProtectedRedirectBtnContainer icon="fa-heart"
+                       redirect="/favorites">
+                       <FavCounter />
+             					 <div>Избранное</div>
+                     </ProtectedRedirectBtnContainer>
+                   </div>
                  </div>
               </div>
 
