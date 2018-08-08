@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {formImageUrl} from '../helpers.js';
+import FavoriteBtnContainer from '../containers/FavoriteBtnContainer.js';
 
 const Item = (props) => {
   return(
@@ -10,16 +11,16 @@ const Item = (props) => {
     			<Link to={"/item/" + props.id} className="title" >
             <img src={
                 !!props.photo? formImageUrl(props.id, 1): "images/dummy.png"
-              } 
+              }
               className="image-sm" />
           </Link>
     		</div>
     		<figcaption className="info-wrap">
           <Link to={"/item/" + props.id} className="title" >{props.title}</Link>
     			<div className="action-wrap">
-            <a href="#" className="btn btn-light btn-sm float-right py-0 my-0">
-              <i className="text-warning icon-sm fa fa-heart"></i>
-            </a>
+            <FavoriteBtnContainer className="btn btn-light btn-sm float-right"
+              mini={true}
+              itemId={props.id} />
     				<div className="price-wrap h5">
     					<span className="price-new">{"Цена: " + props.price}</span>
     				</div>

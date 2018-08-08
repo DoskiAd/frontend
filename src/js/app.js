@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import storeAuth from './middleware/storeAuth.js';
 import reducer from './reducers/index.js';
 import Routes from './router.js';
-import {fillCategories, fillItems} from './middleware/thunks.js';
+import {fillCategories, fillItems, getFavIds} from './middleware/thunks.js';
 
 const initState = () => {
   let storedAuth = localStorage.getItem("auth");
@@ -28,6 +28,9 @@ const appData = createStore(reducer, initState(), applyMiddleware(thunk, storeAu
 
 appData.dispatch(fillCategories());
 appData.dispatch(fillItems());
+if(appData.getState().auth.isLoggedIn){
+  appData.dispatch(getFavIds());
+}
 
 export default class App extends React.Component{
   render(){

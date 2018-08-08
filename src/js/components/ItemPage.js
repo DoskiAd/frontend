@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header.js';
-import ItemCard from './ItemCard.js';
+import ItemCardContainer from '../containers/ItemCardContainer.js';
 
 class ItemPage extends React.Component{
   componentDidMount(){
@@ -13,15 +13,7 @@ class ItemPage extends React.Component{
         <Header />
         <section className="section-content bg padding-y-sm">
           <div className="container">
-            <ItemCard title={this.props.title}
-              price={this.props.price}
-              desc={this.props.desc}
-              phone={this.props.phone}
-              email={this.props.email}
-              location={this.props.location}
-              date={this.props.date}
-              photos={this.props.photos}
-              contactName={this.props.contactName} />
+            <ItemCardContainer {...this.props} />
           </div>
         </section>
       </div>

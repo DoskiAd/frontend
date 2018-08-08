@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import AccConfirmForm from '../components/AccConfirmForm.js';
 import Alert from '../components/Alert.js';
 import {sendConfirmCode} from '../middleware/thunks.js';
@@ -13,9 +14,13 @@ class AccConfirm extends React.Component{
   render(){
     return(
       <div>
+        {
+          this.props.isLoggedIn &&
+          <Redirect to="/" />
+        }
 
         <Alert type="info" message={"Перед использованием аккаунта нужно его подтвердить." +
-           "Код подтверждения выслан на почту, указанную при регистрации"} />
+           "Код подтверждения высылается на почту, указанную при регистрации"} />
         {
           !!this.props.confirmStatus.errorMsg &&
           <Alert type="error" message={this.props.confirmStatus.errorMsg} />
@@ -33,7 +38,8 @@ class AccConfirm extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    confirmStatus: state.confirmAcc
+    confirmStatus: state.confirmAcc,
+    isLoggedIn: state.auth.isLoggedIn
   };
 }
 

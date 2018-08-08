@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {formImageUrl} from '../helpers.js';
+import FavoriteBtnContainer from '../containers/FavoriteBtnContainer.js';
 
 const Item = (props) => {
   return(
@@ -35,9 +36,11 @@ const Item = (props) => {
     				<div className="price-wrap">
     					<span className="h5 my-1 py-0 price">{"Цена: " + props.price}</span>
     				</div>
-    				<p><a href="#" className="btn btn-light">
-              <i className="text-warning icon-sm fa fa-heart"></i> В избранное
-            </a></p>
+    				<div>
+              <FavoriteBtnContainer className="btn btn-light"
+                mini={false}
+                itemId={props.id} />
+            </div>
 			    </div>
         </aside>
 

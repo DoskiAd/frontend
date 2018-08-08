@@ -10,7 +10,15 @@ export const getCategories = () => {
   });
 }
 
-export const getItems = (category, page) => {
+export const getItems = (category, page, token=null) => {
+  if(category === "favorites"){
+    return $.ajax({
+      url: publicConf.apiUrl + "likes" +
+       "?token=" + token + (!!page? "&page=" + page: ""),
+      method: "POST",
+      dataType: "json"
+    });
+  }
   let reqUrl = publicConf.apiUrl +
     (!!category? "category/" + category: "items") +
     (!!page? "?page=" + page: "?page=1");
@@ -127,5 +135,21 @@ export const reqAccountConfirm = (code) => {
   return $.ajax({
     url: publicConf.apiUrl + "confirm?token=" + code,
     method: "GET"
-  })
+  });
+}
+
+export const fetchFavoriteIds = (token) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "like?token=" + token,
+    method: "POST",
+    dataType: "json"
+  });
+}
+
+export const reqToggleFavorite = (token, id) => {
+  return $.ajax({
+    url: publicConf.apiUrl + "like/" + id + "?token=" + token,
+    method: "POST",
+    dataType: "json"
+  });
 }

@@ -16,6 +16,10 @@ class Signup extends React.Component{
     return(
       <div>
         {
+          this.props.isLoggedIn &&
+          <Redirect to="/" />
+        }
+        {
           this.props.regStatus.isDone &&
           <Redirect to="/confirmacc" />
         }
@@ -32,7 +36,8 @@ class Signup extends React.Component{
 
 const mapStateToProps = (state) => {
   return {
-    regStatus: state.register
+    regStatus: state.register,
+    isLoggedIn: state.auth.isLoggedIn
   };
 }
 

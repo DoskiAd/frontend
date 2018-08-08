@@ -8,7 +8,9 @@ import {
   sendAdPhotos,
   reqPassChangeKey,
   sendNewPassword,
-  reqAccountConfirm
+  reqAccountConfirm,
+  fetchFavoriteIds,
+  reqToggleFavorite
 } from '../apiRequests';
 import {login, logout} from '../actions/index.js';
 import {getByKeyVal} from '../helpers.js';
@@ -30,7 +32,7 @@ export const setItemsByPage = (page) => {
       type: "SET_PAGE", page: page
     });
     getItems(
-      getState().categoryFilter, page
+      getState().categoryFilter, page, getState().auth.token
     ).then((res, text, req) => {
       dispatch({
         type: "SET_ITEMS",
@@ -41,7 +43,8 @@ export const setItemsByPage = (page) => {
         number: parseInt(req.getResponseHeader("totalPage")) > 0?
             req.getResponseHeader("totalPage"): 1
       });
-    });
+    },
+    (res) => console.log(res.responseText));
   }
 }
 
@@ -100,6 +103,10 @@ export const authentication = (email, password) => {
     logUserIn(email, password).then(
       (resp) => {
         dispatch(login(resp.email, resp.name, resp.value));
+        fetchFavoriteIds(resp.value).then(
+          (resp) => dispatch({type: "SET_FAV_IDS", favIds: resp}),
+          (resp) => console.log(resp.responseText)
+        );
       },
       (resp, msg) => {
         dispatch(logout());
@@ -177,6 +184,29 @@ export const sendConfirmCode = (code) => {
           type: "SET_CONFIRMACC_ERR_MSG", msg: resp.responseText
         });
       }
+    );
+  }
+}
+
+export const getFavIds = () => {
+  return (dispatch, getState) => {
+    fetchFavoriteIds(getState().auth.token).then(
+      (resp) => dispatch({type: "SET_FAV_IDS", favIds: resp}),
+      (resp) => {
+        console.log(resp.responseText);
+        if(resp.status == "400"){
+          dispatch(logout());
+        }
+      }
+    );
+  }
+}
+
+export const toggleFavorite = (id) => {
+  return (dispatch, getState) => {
+    reqToggleFavorite(getState().auth.token, id).then(
+      (resp) => dispatch({type: "SET_FAV_IDS", favIds: resp}),
+      (resp) => console.log(resp.responseText)
     );
   }
 }

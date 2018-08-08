@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getByKeyVal} from '../helpers.js';
 import {setCurrentItemById} from '../middleware/thunks.js';
-import ItemPage from '../components/ItemPage.js';
+import ItemCard from '../components/ItemCard.js';
 import {formImageUrl} from '../helpers.js';
 
-class ItemPageContainer extends React.Component{
+class ItemCardContainer extends React.Component{
   componentDidMount(){
     this.props.fetchDisplayItem(this.props.match.params.id);
   }
@@ -31,7 +30,8 @@ class ItemPageContainer extends React.Component{
       {return contact.type == "mobile"});
 
     return(
-      <ItemPage title={this.props.displayItem.title}
+      <ItemCard itemId={this.props.displayItem.id}
+        title={this.props.displayItem.title}
         price={this.props.displayItem.price}
         desc={this.props.displayItem.description}
         phone={phones}
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCardContainer);

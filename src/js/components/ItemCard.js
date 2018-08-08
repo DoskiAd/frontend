@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemPhotoCarousel from './ItemPhotoCarousel.js';
+import FavoriteBtnContainer from '../containers/FavoriteBtnContainer.js';
 
 const ItemCard = (props) => {
   return(
@@ -12,13 +13,23 @@ const ItemCard = (props) => {
     		</aside>
     		<aside className="col-sm-7">
           <article className="p-5">
-          	<h3 className="title mb-3">{props.title}</h3>
+            <div className="row">
+              <div className="col">
+                <h3 className="title mb-3">{props.title}</h3>
+              </div>
+              <div className="col">
+                <FavoriteBtnContainer className="btn btn-light float-right"
+                  itemId={props.itemId}
+                  mini={false} />
+              </div>
+            </div>
 
           <div className="mb-3">
           	<var className="price h3">
           		<span className="currency mr-2">Цена:</span><span className="num">{props.price}</span>
           	</var>
           </div>
+
           <dl>
             <dt>Описание:</dt>
             <dd><p>{props.desc}</p></dd>
@@ -62,9 +73,7 @@ const ItemCard = (props) => {
           		</div>
           	</div>
           	<hr />
-          	<a href="#" className="btn  btn-light">
-              <i className="text-warning icon-sm fa fa-heart"></i> В избранное
-            </a>
+
           </article>
     		</aside>
     	</div>

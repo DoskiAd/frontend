@@ -3,7 +3,7 @@ import NavbarCategories from '../containers/NavbarCategories.js';
 import SearchForm from './SearchForm.js';
 import UserBtnContainer from '../containers/UserBtnContainer.js';
 import ProtectedRedirectBtnContainer from '../containers/ProtectedRedirectBtnContainer.js';
-import Favorites from './Favorites.js';
+import FavCounter from '../containers/FavCounter.js';
 
 const Header = (props) => {
   return(
@@ -38,9 +38,16 @@ const Header = (props) => {
                         Создать<br />объявление
                       </ProtectedRedirectBtnContainer>
                    </div>
-                   <div className="col-auto">
-                     <Favorites />
-                   </div>
+                   {
+                     !props.favorites &&
+                     <div className="col-auto">
+                       <ProtectedRedirectBtnContainer icon="fa-heart"
+                         redirect="/favorites">
+                         <FavCounter />
+               					 <div>Избранное</div>
+                       </ProtectedRedirectBtnContainer>
+                     </div>
+                   }
                  </div>
               </div>
 

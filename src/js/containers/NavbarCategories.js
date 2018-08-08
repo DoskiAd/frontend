@@ -4,21 +4,11 @@ import NavbarList from '../components/NavbarList.js';
 import {setItemsByCategory} from '../middleware/thunks.js';
 
 const NavbarCategories = (props) => {
-  return <NavbarList home={props.home}
-    categoriesList={props.categoriesList}
-    callback={(id) => {
-      props.applyFilter(id);
-    }} />
+  return <NavbarList categoriesList={props.categoriesList} />
 }
 
 const mapStateToProps = (state) => {
   return {categoriesList: state.categories};
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    applyFilter: (id) => dispatch(setItemsByCategory(id))
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarCategories);
+export default connect(mapStateToProps)(NavbarCategories);

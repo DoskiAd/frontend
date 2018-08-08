@@ -12,6 +12,7 @@ import register from './register.js';
 import loginMsgs from './loginMsgs.js';
 import passReset from './passReset.js';
 import confirmAcc from './confirmAcc.js';
+import favoriteIds from './favoriteIds.js';
 
 export default combineReducers({
   categories,
@@ -26,5 +27,6 @@ export default combineReducers({
   register,
   loginMsgs,
   passReset,
-  confirmAcc
+  confirmAcc,
+  favoriteIds
 });

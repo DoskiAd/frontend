@@ -4,29 +4,46 @@ import ItemsContainer from '../containers/ItemsContainer.js';
 import FiltersContainer from '../containers/FiltersContainer.js';
 import PagesContainer from '../containers/PagesContainer.js';
 import LayoutControl from '../containers/LayoutControl.js';
+import Loader from '../containers/Loader.js';
 
 const HomePage = (props) => {
   return(
     <div>
 
-    <Header home={true} />
+      {
+        !!props.favorites &&
+        <Loader category="favorites" />
+      }
+      {
+        !!props.home &&
+        <Loader category={null} />
+      }
+      {
+        !!props.category &&
+        <Loader category={props.match.params.categoryId} />
+      }
+
+    <Header {...props} />
 
     <section className="section-content bg padding-y-sm">
       <div className="container">
 
         <div className="card mb-2">
           <div className="card-body">
-            <div className="row">
+            {
+              !!props.home &&
+              <div className="row">
 
-              <div className="col-md-3-24"><strong>Фильтр:</strong></div>
+                <div className="col-md-3-24"><strong>Фильтр:</strong></div>
 
-              <div className="col-md-21-24">
-                <div className="btn-group-toggle" data-toggle="buttons">
-                  <FiltersContainer />
+                <div className="col-md-21-24">
+                  <div className="btn-group-toggle" data-toggle="buttons">
+                    <FiltersContainer />
+                  </div>
                 </div>
-              </div>
 
-            </div>
+              </div>
+            }
             <hr />
             <div className="row">
 
