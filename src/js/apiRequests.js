@@ -2,6 +2,11 @@ import $ from 'jquery';
 
 const publicConf = require('publicConf');
 
+export const SORT_KEY_DATE = "date";
+export const SORT_KEY_PRICE = "price";
+export const SORT_ORDER_ASC = "asc";
+export const SORT_ORDER_DESC = "desc";
+
 export const getCategories = () => {
   return $.ajax({
     url: publicConf.apiUrl + "categories",

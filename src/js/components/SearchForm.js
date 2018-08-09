@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  SORT_KEY_DATE,
+  SORT_KEY_PRICE,
+  SORT_ORDER_ASC,
+  SORT_ORDER_DESC
+} from '../apiRequests.js'
 
 class SearchForm extends React.Component{
   constructor(props){
@@ -6,8 +12,8 @@ class SearchForm extends React.Component{
     this.state = {
       textInput: "",
       categoryInput: "default",
-      sortInput: "date",
-      orderInput: "desc"
+      sortInput: SORT_KEY_DATE,
+      orderInput: SORT_ORDER_DESC
     }
   }
 
@@ -63,8 +69,8 @@ class SearchForm extends React.Component{
                 <select className="ml-1"
                   value={this.state.sortInput}
                   onChange={(event) => this.trackInput.bind(this)(event, "sortInput")}>
-                  <option value="price">Цене </option>
-      						<option value="date">Новизне </option>
+                  <option value={SORT_KEY_PRICE}>Цене </option>
+      						<option value={SORT_KEY_DATE} >Новизне </option>
       					</select>
               </label>
             </div>
@@ -73,8 +79,8 @@ class SearchForm extends React.Component{
                 <select className="ml-1"
                   value={this.state.orderInput}
                   onChange={(event) => this.trackInput.bind(this)(event, "orderInput")} >
-                  <option value="asc">По возрастанию</option>
-      						<option value="desc">По убыванию</option>
+                  <option value={SORT_ORDER_ASC} >По возрастанию</option>
+      						<option value={SORT_ORDER_DESC} >По убыванию</option>
       					</select>
               </label>
             </div>
