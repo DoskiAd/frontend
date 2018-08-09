@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 
 class SearchForm extends React.Component{
   constructor(props){
@@ -8,14 +7,7 @@ class SearchForm extends React.Component{
       textInput: "",
       categoryInput: "default",
       sortInput: "date",
-      orderInput: "desc",
-      redirect: false
-    }
-  }
-
-  enableRedirect(){
-    if(!this.props.searchPage){
-      this.setState({redirect: true});
+      orderInput: "desc"
     }
   }
 
@@ -34,7 +26,6 @@ class SearchForm extends React.Component{
         this.state.sortInput,
         this.state.orderInput
       );
-    this.enableRedirect.bind(this)();
   }
 
   render(){
@@ -45,10 +36,6 @@ class SearchForm extends React.Component{
     return(
       <form className="py-1"
         onSubmit={(event) => this.acceptInput.bind(this)(event)}>
-        {
-          !this.props.searchPage && this.state.redirect &&
-          <Redirect to="/search" />
-        }
 				<div className="input-group w-100">
 
 					<select className="custom-select"

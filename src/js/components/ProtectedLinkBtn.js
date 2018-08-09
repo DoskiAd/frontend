@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import {Link} from 'react-router-dom';
 
-const ProtectedRedirectBtn = (props) => {
+const ProtectedLinkBtn = (props) => {
 
   $(() => {
     $('[data-toggle="tooltip"]').tooltip()
@@ -12,7 +12,7 @@ const ProtectedRedirectBtn = (props) => {
     <span className="widget-header">
 			<div className="icontext">
 				<div className="icon-wrap">
-          <i className={"text-warning icon-sm fa " + props.icon}></i>
+          <i className={"text-warning icon-sm " + props.icon}></i>
         </div>
 				<div className="text-wrap text-dark">
 					{
@@ -44,4 +44,4 @@ const ProtectedRedirectBtn = (props) => {
   );
 }
 
-export default ProtectedRedirectBtn;
+export default ProtectedLinkBtn;

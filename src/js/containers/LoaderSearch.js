@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import {setItemsByCategory} from '../middleware/thunks.js';
 
 class LoaderSearch extends React.Component{
-  componentDidMount(){
-    this.props.loadSearchData();
-  }
 
   componentDidUpdate(){
     this.props.loadSearchData();

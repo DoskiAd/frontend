@@ -25,7 +25,6 @@ const Routes = () => {
         <Route path="/favorites" render={() => <HomePage favorites={true} />} />
         <Route path="/categorypage/:categoryId" render={(props) =>
             <HomePage {...props} category={true} />} />
-        <Route path="/search" render={() => <HomePage search={true} />} />
       </Switch>
     </Router>
   );

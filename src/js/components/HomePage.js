@@ -28,11 +28,8 @@ const HomePage = (props) => {
         !!props.category &&
         <Loader category={props.match.params.categoryId} />
       }
-      {
-        !!props.search &&
-        <LoaderSearch />
-      }
 
+    <LoaderSearch />
     <Header {...props} />
 
     <section className="section-content bg padding-y-sm">
