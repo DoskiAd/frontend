@@ -40,7 +40,7 @@ class SearchForm extends React.Component{
     });
 
     return(
-      <form className="py-1"
+      <form className="pt-4"
         onSubmit={(event) => this.acceptInput.bind(this)(event)}>
 				<div className="input-group w-100">
 
@@ -63,9 +63,9 @@ class SearchForm extends React.Component{
 			      </button>
 			    </div>
 
-          <div className="row justify-content-center mt-1">
+          <div className="row justify-content-center pt-1 my-0 pb-0">
             <div className="col-auto">
-              <label>Сортировать по:
+              <label className="pl-4" >Сортировать по:
                 <select className="ml-1"
                   value={this.state.sortInput}
                   onChange={(event) => this.trackInput.bind(this)(event, "sortInput")}>
@@ -75,7 +75,7 @@ class SearchForm extends React.Component{
               </label>
             </div>
             <div className="col-auto">
-              <label>Порядок сортировки:
+              <label className="pl-4" >Порядок сортировки:
                 <select className="ml-1"
                   value={this.state.orderInput}
                   onChange={(event) => this.trackInput.bind(this)(event, "orderInput")} >
