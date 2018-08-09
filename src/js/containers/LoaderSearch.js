@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {setItemsByCategory} from '../middleware/thunks.js';
 
-class Loader extends React.Component{
+class LoaderSearch extends React.Component{
   componentDidMount(){
-    this.props.loadData(this.props.category);
+    this.props.loadSearchData();
   }
 
   componentDidUpdate(){
-    this.props.loadData(this.props.category);
+    this.props.loadSearchData();
   }
 
   render(){
@@ -17,13 +17,15 @@ class Loader extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    searchOptions: state.searchOptions
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadData: (category) => dispatch(setItemsByCategory(category))
+    loadSearchData: (category) => dispatch(setItemsByCategory("search"))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loader);
+export default connect(mapStateToProps, mapDispatchToProps)(LoaderSearch);

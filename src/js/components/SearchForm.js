@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 class SearchForm extends React.Component{
   constructor(props){
@@ -8,7 +8,14 @@ class SearchForm extends React.Component{
       textInput: "",
       categoryInput: "default",
       sortInput: "date",
-      orderInput: "desc"
+      orderInput: "desc",
+      redirect: false
+    }
+  }
+
+  enableRedirect(){
+    if(!this.props.searchPage){
+      this.setState({redirect: true});
     }
   }
 
@@ -19,13 +26,29 @@ class SearchForm extends React.Component{
     this.setState(newState);
   }
 
+  acceptInput(event){
+    event.preventDefault();
+    this.props.setSearchOptions(
+        this.state.categoryInput == "default"? null: this.state.categoryInput,
+        this.state.textInput.toLowerCase().trim().split(/\s+/).join(" "),
+        this.state.sortInput,
+        this.state.orderInput
+      );
+    this.enableRedirect.bind(this)();
+  }
+
   render(){
     let optionList = this.props.categoriesList.map((category) => {
       return <option key={category.id} value={category.id}>{category.name}</option>
     });
 
     return(
-      <form className="py-1">
+      <form className="py-1"
+        onSubmit={(event) => this.acceptInput.bind(this)(event)}>
+        {
+          !this.props.searchPage && this.state.redirect &&
+          <Redirect to="/search" />
+        }
 				<div className="input-group w-100">
 
 					<select className="custom-select"
@@ -41,17 +64,10 @@ class SearchForm extends React.Component{
             value={this.state.textInput}
             onChange={(event) => this.trackInput.bind(this)(event, "textInput")} />
 			    <div className="input-group-append">
-			      <Link to="/search"
-              className="btn btn-warning"
-              onClick={ () => this.props.setSearchOptions(
-                  this.state.categoryInput == "default"? null: this.state.categoryInput,
-                  this.state.textInput.toLowerCase().trim().split(/\s+/).join(" "),
-                  this.state.sortInput,
-                  this.state.orderInput
-                )
-              } >
+			      <button type="submit"
+              className="btn btn-warning" >
 			        <i className="fa fa-search"></i> Найти
-			      </Link>
+			      </button>
 			    </div>
 
           <div className="row justify-content-center mt-1">

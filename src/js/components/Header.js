@@ -6,6 +6,9 @@ import ProtectedRedirectBtnContainer from '../containers/ProtectedRedirectBtnCon
 import FavCounter from '../containers/FavCounter.js';
 import {Link} from 'react-router-dom';
 
+// из-за косяка реализации поиска приходится перемонтировать форму поиска
+// при перемещении со страницы поиска
+
 const Header = (props) => {
   return(
     <header className="section-header">
@@ -26,7 +29,15 @@ const Header = (props) => {
          <div className="container">
            <div className="row-sm align-items-center">
               <div className="col-lg-12-24">
-                <Search search={props.search} />
+                {
+                  !!props.search &&
+                  <Search searchPage={true} />
+                }
+                {
+                  !props.search &&
+                  <Search searchPage={false} />
+                }
+
               </div>
               <div className="col-lg-12-24">
 		             <div className="widgets-wrap float-right row no-gutters py-1">

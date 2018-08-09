@@ -5,6 +5,7 @@ import FiltersContainer from '../containers/FiltersContainer.js';
 import PagesContainer from '../containers/PagesContainer.js';
 import LayoutControl from '../containers/LayoutControl.js';
 import Loader from '../containers/Loader.js';
+import LoaderSearch from '../containers/LoaderSearch.js';
 import PrivatePageProtect from '../containers/PrivatePageProtect.js';
 import ResultsCounter from '../containers/ResultsCounter.js';
 
@@ -29,7 +30,7 @@ const HomePage = (props) => {
       }
       {
         !!props.search &&
-        <Loader category="search" />
+        <LoaderSearch />
       }
 
     <Header {...props} />
