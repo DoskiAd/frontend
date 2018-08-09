@@ -26,7 +26,7 @@ const Header = (props) => {
          <div className="container">
            <div className="row-sm align-items-center">
               <div className="col-lg-12-24">
-                <Search />
+                <Search search={props.search} />
               </div>
               <div className="col-lg-12-24">
 		             <div className="widgets-wrap float-right row no-gutters py-1">

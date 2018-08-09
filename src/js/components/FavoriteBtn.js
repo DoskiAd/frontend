@@ -2,7 +2,7 @@ import React from 'react';
 
 const FavoriteBtn = (props) => {
   let cls = "icon-sm fa fa-heart " +
-    (props.unfav?"text-secondary":"text-warning");
+    (props.unfav?"text-warning":"text-secondary");
   let text = props.unfav? "Убрать": "В избранное";
   return(
     <a href="#" className={props.className}
